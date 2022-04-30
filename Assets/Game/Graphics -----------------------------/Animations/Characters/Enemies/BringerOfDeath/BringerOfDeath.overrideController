@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BringerOfDeath
+  m_Controller: {fileID: 9100000, guid: 42af4eabaf36f8e43bcf996aeeb467ff, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a14d98c371303834b929a52e36043514, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 890c5833f64f429459ab4356e2b8f775, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e53170ef15a52fb448824fcf37354a80, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fa6cbcce651d50049bf64294d06aefe2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 292989d4bbb808443a5597345b18829b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c99207e72a7f9ac4a983bc66ea077909, type: 2}

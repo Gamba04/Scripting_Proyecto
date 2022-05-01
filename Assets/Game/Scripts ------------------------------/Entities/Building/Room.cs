@@ -19,9 +19,9 @@ public class Room : MonoBehaviour
 
     private Queue<Enemy> enemies = new Queue<Enemy>();
 
-    #region Public Methods
+    #region Init
 
-    public void CreateRoom(RoomInfo info)
+    public void Init(RoomInfo info)
     {
         for (int i = 0; i < info.enemies.Count; i++)
         {
@@ -49,6 +49,8 @@ public class Room : MonoBehaviour
     }
 
     #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Editor
 

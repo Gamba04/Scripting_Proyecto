@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944878ab118c6dc49bd6aba6bc70ea95, type: 3}
   m_Name: Levels
   m_EditorClassIdentifier: 
-  levels: []
+  levels:
+  - name: Level 1
+    rooms:
+    - name: Room 1 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      enemies:
+      - name: Enemy 1
+        health: 0
+      - name: Enemy 2
+        health: 0

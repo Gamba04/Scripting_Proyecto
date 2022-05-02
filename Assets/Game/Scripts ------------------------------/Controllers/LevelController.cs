@@ -19,14 +19,23 @@ public class LevelController : MonoBehaviour
     private Vector3 playerBuildingPivot;
     [SerializeField]
     private Vector3 enemyBuildingPivot;
+    [SerializeField]
+    private Vector3 playerPivot;
 
     private Building playerBuilding;
     private Building enemyBuilding;
 
+    private Player player;
+
     #region Init
 
-    public void Init(int level)
+    public void Init(int level, Player player)
     {
+        this.player = player;
+
+        player.transform.position = playerBuildingPivot + playerPivot;
+        player.Init();
+
         // Player Building
         playerBuilding = Instantiate(buildingPrefab, buildingParent);
         playerBuilding.name = "Player Building";
@@ -68,6 +77,9 @@ public class LevelController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(enemyBuildingPivot, 0.5f);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(playerBuildingPivot + playerPivot, 0.5f);
     }
 
 #endif

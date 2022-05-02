@@ -49,7 +49,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2255212889694952618, guid: afe8305bdb8e727448513e864d9d6c79,
     type: 3}
   enemyParent: {fileID: 6364727347416345355}
-  enemiesPivot: {x: 2, y: 0.3}
+  enemiesPivot: {x: 2, y: 0.2}
   enemiesSeparation: 1
 --- !u!210 &8779417505900051357
 SortingGroup:
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8496e1bae4aef8a45b14c861a1040498, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -184,4 +184,4 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1

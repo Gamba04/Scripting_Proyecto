@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private LevelController levelController;
+    [SerializeField]
+    private FightController fightController;
+    [SerializeField]
+    private Player player;
 
     #region Start
 
@@ -64,7 +68,8 @@ public class GameManager : MonoBehaviour
 
     private void OnStart()
     {
-        levelController.Init(gameData.Level);
+        levelController.Init(gameData.Level, player);
+        fightController.Init(player);
     }
 
     #endregion

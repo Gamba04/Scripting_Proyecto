@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class FightController : MonoBehaviour
 {
-    [SerializeField]
     private Player player;
+
+    #region Init
+
+    public void Init(Player player)
+    {
+        this.player = player;
+    }
+
+    #endregion
+
 }

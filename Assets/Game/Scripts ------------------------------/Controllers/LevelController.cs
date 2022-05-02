@@ -25,16 +25,11 @@ public class LevelController : MonoBehaviour
     private Building playerBuilding;
     private Building enemyBuilding;
 
-    private Player player;
-
     #region Init
 
     public void Init(int level, Player player)
     {
-        this.player = player;
-
         player.transform.position = playerBuildingPivot + playerPivot;
-        player.Init();
 
         // Player Building
         playerBuilding = Instantiate(buildingPrefab, buildingParent);

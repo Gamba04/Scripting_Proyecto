@@ -60,7 +60,7 @@ public class Building : MonoBehaviour
         }
         else
         {
-
+            // animation
         }
     }
 

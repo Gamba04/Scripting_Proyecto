@@ -17,7 +17,7 @@ public class Room : MonoBehaviour
     [SerializeField]
     private float enemiesSeparation;
 
-    private Queue<Enemy> enemies = new Queue<Enemy>();
+    private Stack<Enemy> enemies = new Stack<Enemy>();
 
     #region Init
 
@@ -33,9 +33,27 @@ public class Room : MonoBehaviour
         {
             Enemy enemy = CreateEnemy(info.enemies[i], i);
 
-            enemies.Enqueue(enemy);
+            enemies.Push(enemy);
+        }
+
+        EventsInit();
+    }
+
+    private void EventsInit()
+    {
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.onDeath += OnEnemyDeath;
         }
     }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Public Methods
+
+    public Enemy GetFirstEnemy() => enemies.Count > 0 ? enemies.Peek() : null;
 
     #endregion
 
@@ -52,6 +70,11 @@ public class Room : MonoBehaviour
         enemy.Init(info, index);
 
         return enemy;
+    }
+
+    private void OnEnemyDeath()
+    {
+        if (enemies.Count > 0) enemies.Pop();
     }
 
     #endregion

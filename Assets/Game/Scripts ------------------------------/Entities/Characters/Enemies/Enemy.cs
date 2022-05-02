@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    [Header("Enemy")]
     [Header("Components")]
     [SerializeField]
     private SpriteRenderer sr;

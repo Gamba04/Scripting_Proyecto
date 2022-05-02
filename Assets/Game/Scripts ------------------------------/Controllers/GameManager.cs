@@ -12,11 +12,21 @@ public class GameManager : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]
+    private new Camera camera;
+    [SerializeField]
     private LevelController levelController;
+    [SerializeField]
+    private InputController inputController;
     [SerializeField]
     private FightController fightController;
     [SerializeField]
     private Player player;
+
+    [Header("Settings")]
+    [SerializeField]
+    private int playerStartHealth = 10;
+
+    public static Camera Camera => Instance.camera;
 
     #region Start
 
@@ -68,19 +78,24 @@ public class GameManager : MonoBehaviour
 
     private void OnStart()
     {
+        player.Init(playerStartHealth);
+
         levelController.Init(gameData.Level, player);
+        inputController.Init();
         fightController.Init(player);
+
+        EventsStart();
     }
 
-    #endregion
-
-    // ----------------------------------------------------------------------------------------------------------------------------
-
-    #region Update
-
-    private void Update()
+    private void EventsStart()
     {
+        player.onDeath += OnPlayerDeath;
 
+        inputController.onStartDrag += OnInputStartDrag;
+        inputController.onResetDrag += OnInputResetDrag;
+        inputController.onAttackRoom += OnInputAttackRoom;
+
+        fightController.onAttackFinished += OnAttackFinished;
     }
 
     #endregion
@@ -89,18 +104,50 @@ public class GameManager : MonoBehaviour
 
     #region Static Methods
 
-    public new static void print(object text)
+    public new static void print(object message)
     {
 
 #if UNITY_EDITOR
 
         if (Instance.debugs)
         {
-            MonoBehaviour.print(text);
+            MonoBehaviour.print(message);
         }
 
 #endif
 
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Other
+
+    private void OnInputStartDrag()
+    {
+
+    }
+
+    private void OnInputResetDrag()
+    {
+        fightController.OnResetPlayerPosition();
+    }
+
+    private void OnInputAttackRoom(Room room)
+    {
+        fightController.OnStartRoomAttack(room);
+    }
+
+    private void OnAttackFinished()
+    {
+        inputController.SetEnabled(true);
+    }
+
+    private void OnPlayerDeath()
+    {
+        // death
+        print("Player died");
     }
 
     #endregion

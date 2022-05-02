@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173bad53a95dc424298255da7a9f30cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 385970134421766577}
+  attackDelay: 0.7
+  deathDelay: 1.5
   sr: {fileID: 3040789259598719429}
 --- !u!1 &5537746342001123362
 GameObject:

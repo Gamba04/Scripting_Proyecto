@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Character : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Character : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Animator anim;
+    [SerializeField]
+    protected TextMeshPro healthText;
 
     [Header("Settings")]
     [SerializeField]
@@ -55,14 +58,15 @@ public class Character : MonoBehaviour
 
     #region Other
 
-    protected virtual void OnDamageTaken()
+    private void OnDamageTaken()
     {
-
+        healthText.text = health.ToString();
     }
 
     private void OnKill(int health)
     {
         this.health += health;
+        healthText.text = this.health.ToString();
     }
 
     private void Die(Action onFinishDeath = null)
@@ -77,9 +81,11 @@ public class Character : MonoBehaviour
         }, deathDelay, $"{name} death");
     }
 
-    protected virtual void OnFinishDeath()
+    private void OnFinishDeath()
     {
         onDeath?.Invoke();
+
+        healthText.gameObject.SetActive(false);
     }
 
     #endregion

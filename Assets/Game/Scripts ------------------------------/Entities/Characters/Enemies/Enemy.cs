@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Enemy : Character
 {
@@ -13,6 +14,7 @@ public class Enemy : Character
     public void Init(EnemyInfo info, int index)
     {
         health = info.health;
+        healthText.text = health.ToString();
 
         sr.sortingOrder = -index;
     }

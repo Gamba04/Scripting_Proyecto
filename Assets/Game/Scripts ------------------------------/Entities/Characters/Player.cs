@@ -31,6 +31,7 @@ public class Player : Character
     public void Init(int startHealth)
     {
         health = startHealth;
+        healthText.text = health.ToString();
 
         SetDraggingState(DraggingState.Normal);
     }

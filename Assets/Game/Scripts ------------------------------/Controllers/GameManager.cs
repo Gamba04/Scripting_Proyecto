@@ -6,7 +6,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    private GameDataScrObj gameData;
+    [SerializeField]
     private bool debugs = true;
+
+    [Header("Components")]
+    [SerializeField]
+    private LevelController levelController;
 
     #region Start
 
@@ -58,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void OnStart()
     {
-
+        levelController.Init(gameData.Level);
     }
 
     #endregion

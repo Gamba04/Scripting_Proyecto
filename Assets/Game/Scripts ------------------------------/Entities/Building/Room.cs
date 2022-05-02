@@ -23,6 +23,12 @@ public class Room : MonoBehaviour
 
     public void Init(RoomInfo info)
     {
+        if (info.enemies == null) // Player building's room
+        {
+            Destroy(enemyParent.gameObject);
+            return;
+        }
+
         for (int i = 0; i < info.enemies.Count; i++)
         {
             Enemy enemy = CreateEnemy(info.enemies[i], i);
@@ -40,10 +46,10 @@ public class Room : MonoBehaviour
     private Enemy CreateEnemy(EnemyInfo info, int index)
     {
         Enemy enemy = Instantiate(enemyPrefab, enemyParent);
-        enemy.name = $"Enemy {index}";
+        enemy.name = $"Enemy {index + 1}";
         enemy.transform.position = transform.position + (Vector3)enemiesPivot + Vector3.left * index * enemiesSeparation;
 
-        enemy.Init(info);
+        enemy.Init(info, index);
 
         return enemy;
     }
@@ -58,7 +64,7 @@ public class Room : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(enemiesPivot, 0.5f);
+        Gizmos.DrawWireSphere((Vector2)transform.position + enemiesPivot, enemiesSeparation / 2);
     }
 
 #endif

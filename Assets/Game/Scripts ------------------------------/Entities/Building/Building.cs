@@ -10,25 +10,35 @@ public class Building : MonoBehaviour
     private Room roomPrefab;
     [SerializeField]
     private Transform roomParent;
+    [SerializeField]
+    private List<SpriteRenderer> backgroundSprites;
 
     [Header("Settings")]
     [SerializeField]
     private float floorSeparation = 5;
 
-    private List<Room> rooms;
+    private List<Room> rooms = new List<Room>();
 
     #region Init
 
-    public void Init(Vector3 pivot)
+    /// <summary> Base building with 1 room. </summary>
+    public void Init()
     {
-        // base building
+        SetFloors(1, true);
+
+        Room room = CreateRoom(new RoomInfo(), 0);
+
+        rooms.Add(room);
     }
 
-    public void Init(Vector3 pivot, LevelInfo info)
+    /// <summary> Custom building based on info. </summary>
+    public void Init(LevelInfo info)
     {
+        SetFloors(info.rooms.Count, true);
+
         for (int i = 0; i < info.rooms.Count; i++)
         {
-            Room room = CreateRoom(info.rooms[i], pivot, i);
+            Room room = CreateRoom(info.rooms[i], i);
 
             rooms.Add(room);
         }
@@ -40,11 +50,25 @@ public class Building : MonoBehaviour
 
     #region Other
 
-    private Room CreateRoom(RoomInfo info, Vector3 pivot, int index)
+    private void SetFloors(int amount, bool instant, Action onFinish = null)
+    {
+        if (instant)
+        {
+            foreach (SpriteRenderer sprite in backgroundSprites) sprite.size = new Vector2(sprite.size.x, amount);
+
+            onFinish?.Invoke();
+        }
+        else
+        {
+
+        }
+    }
+
+    private Room CreateRoom(RoomInfo info, int index)
     {
         Room room = Instantiate(roomPrefab, roomParent);
-        room.name = $"Room {index}";
-        room.transform.position = pivot + Vector3.up * index * floorSeparation;
+        room.name = $"Room {index + 1}";
+        room.transform.position = transform.position + Vector3.up * index * floorSeparation;
 
         room.Init(info);
 

@@ -59,11 +59,19 @@ public class EnemyInfo
 
 #endregion
 
-[CreateAssetMenu(fileName = "Levels", menuName = "Setup/Levels Data", order = 0)]
+[CreateAssetMenu(fileName = "Levels", menuName = "Setup/Levels Data", order = 1)]
 public class LevelsScrObj : ScriptableObject
 {
     [SerializeField]
     private List<LevelInfo> levels = new List<LevelInfo>();
+
+    #region Public Methods
+
+    public LevelInfo GetLevel(int index) => levels[index];
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Editor
 

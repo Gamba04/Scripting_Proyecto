@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -148,6 +149,13 @@ public class GameManager : MonoBehaviour
     {
         // death
         print("Player died");
+
+        UIController.SetFade(true, onTransitionEnd: RestartLevel);
+    }
+
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     #endregion

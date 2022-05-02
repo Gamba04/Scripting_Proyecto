@@ -260,7 +260,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    duration: 0.5
+    duration: 1
     value: {r: 0, g: 0, b: 0, a: 0}
     isOnTransition: 0
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
@@ -893,7 +893,7 @@ MonoBehaviour:
   inputController: {fileID: 163223832}
   fightController: {fileID: 280848956}
   player: {fileID: 1306561846}
-  playerStartHealth: 100
+  playerStartHealth: 20
 --- !u!1 &862398042
 GameObject:
   m_ObjectHideFlags: 0

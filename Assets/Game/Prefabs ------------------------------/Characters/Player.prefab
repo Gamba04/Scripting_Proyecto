@@ -152,7 +152,7 @@ MonoBehaviour:
   attackDelay: 1
   deathDelay: 2
   sr: {fileID: 7702679539937121273}
-  draggingAlpha: 0.75
+  draggingAlpha: 0.6
   draggingState: 0
 --- !u!50 &4307899902570765016
 Rigidbody2D:

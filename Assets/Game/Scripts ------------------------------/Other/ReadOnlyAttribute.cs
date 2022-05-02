@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
+
 [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = true)]
 public class ReadOnlyAttribute : PropertyAttribute
 {
     public bool activated;
 }
+
+#if UNITY_EDITOR
 
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 public class ReadOnlyPropertyDrawer : PropertyDrawer
@@ -45,3 +48,5 @@ public class ReadOnlyPropertyDrawer : PropertyDrawer
         GUI.color = previousColor;
     }
 }
+
+#endif

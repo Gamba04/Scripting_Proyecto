@@ -33,7 +33,8 @@ public class FightController : MonoBehaviour
 
     public void OnStartRoomAttack(Room room)
     {
-        // move to position
+        player.transform.position = room.PlayerPosition;
+        lastValidPosition = player.transform.position;
 
         AttackRoom(room);
     }

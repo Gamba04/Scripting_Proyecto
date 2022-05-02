@@ -16,8 +16,12 @@ public class Room : MonoBehaviour
     private Vector2 enemiesPivot;
     [SerializeField]
     private float enemiesSeparation;
+    [SerializeField]
+    private Vector2 playerPivot;
 
     private Stack<Enemy> enemies = new Stack<Enemy>();
+
+    public Vector2 PlayerPosition => (Vector2)transform.position + playerPivot;
 
     #region Init
 
@@ -88,6 +92,9 @@ public class Room : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere((Vector2)transform.position + enemiesPivot, enemiesSeparation / 2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere((Vector2)transform.position + playerPivot, 0.5f);
     }
 
 #endif

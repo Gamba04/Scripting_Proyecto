@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField]
     private int playerStartHealth = 10;
+    [SerializeField]
+    private float winDelay = 1;
+
+    private static int accumulatedHealth = -1;
 
     public static Camera Camera => Instance.camera;
 
@@ -79,6 +83,16 @@ public class GameManager : MonoBehaviour
 
     private void OnStart()
     {
+        // Player health
+        if (accumulatedHealth == -1) // First level
+        {
+            accumulatedHealth = playerStartHealth;
+        }
+        else // Other level
+        {
+            playerStartHealth = accumulatedHealth;
+        }
+
         player.Init(playerStartHealth);
 
         levelController.Init(gameData.Level, player);
@@ -91,6 +105,7 @@ public class GameManager : MonoBehaviour
     private void EventsStart()
     {
         player.onDeath += OnPlayerDeath;
+        player.onGainHealth += OnPlayerGainHealth;
 
         inputController.onStartDrag += OnInputStartDrag;
         inputController.onResetDrag += OnInputResetDrag;
@@ -142,21 +157,38 @@ public class GameManager : MonoBehaviour
 
     private void OnAttackFinished()
     {
-        inputController.SetEnabled(true);
+        if (levelController.CheckWin())
+        {
+            Timer.CallOnDelay(GoToNextLevel, winDelay, "Win Level");
+        }
+        else
+        {
+            inputController.SetEnabled(true);
+        }
+    }
+
+    private void OnPlayerGainHealth(int gainedHealth)
+    {
+        accumulatedHealth += gainedHealth;
+    }
+
+    private void GoToNextLevel()
+    {
+        gameData.NextLevel();
+
+        Restart();
     }
 
     private void OnPlayerDeath()
     {
-        // death
         print("Player died");
 
-        UIController.SetFade(true, onTransitionEnd: RestartLevel);
+        Restart();
     }
 
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    private void Restart() => UIController.SetFade(true, false, ReloadScene);
+
+    private void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     #endregion
 

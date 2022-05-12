@@ -59,6 +59,8 @@ public class Room : MonoBehaviour
 
     public Enemy GetFirstEnemy() => enemies.Count > 0 ? enemies.Peek() : null;
 
+    public bool IsCleared() => enemies.Count == 0;
+
     #endregion
 
     // ----------------------------------------------------------------------------------------------------------------------------

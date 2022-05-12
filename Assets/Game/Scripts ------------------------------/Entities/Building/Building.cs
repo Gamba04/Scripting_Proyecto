@@ -48,6 +48,22 @@ public class Building : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
+    #region Public Methods
+
+    public bool IsCleared()
+    {
+        foreach (Room room in rooms)
+        {
+            if (!room.IsCleared()) return false;
+        }
+
+        return true;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Other
 
     private void SetFloors(int amount, bool instant, Action onFinish = null)

@@ -50,6 +50,14 @@ public class LevelController : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
+    #region Public Methods
+
+    public bool CheckWin() => enemyBuilding.IsCleared();
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Editor
 
 #if UNITY_EDITOR

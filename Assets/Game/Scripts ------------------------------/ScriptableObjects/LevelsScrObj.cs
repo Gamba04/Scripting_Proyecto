@@ -65,6 +65,8 @@ public class LevelsScrObj : ScriptableObject
     [SerializeField]
     private List<LevelInfo> levels = new List<LevelInfo>();
 
+    public int LevelCount => levels.Count;
+
     #region Public Methods
 
     public LevelInfo GetLevel(int index) => levels[index];

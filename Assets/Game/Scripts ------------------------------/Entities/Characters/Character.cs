@@ -22,6 +22,7 @@ public class Character : MonoBehaviour
     protected int health;
 
     public event Action onDeath;
+    public event Action<int> onGainHealth;
 
     public int Helath => health;
 
@@ -67,6 +68,8 @@ public class Character : MonoBehaviour
     {
         this.health += health;
         healthText.text = this.health.ToString();
+
+        onGainHealth?.Invoke(health);
     }
 
     private void Die(Action onFinishDeath = null)

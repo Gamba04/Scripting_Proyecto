@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
     private Canvas canvas;
     [SerializeField]
     private Image fade;
+    [SerializeField]
+    private Text levelText;
 
     [Header("Settings")]
     [SerializeField]
@@ -188,7 +190,10 @@ public class UIController : MonoBehaviour
 
     #region Static Methods
 
-
+    public static void UpdateLevelText(int level)
+    {
+        Instance.levelText.text = (level + 1).ToString();
+    }
 
     #endregion
 

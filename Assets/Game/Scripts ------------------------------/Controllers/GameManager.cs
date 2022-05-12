@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
 
         player.Init(playerStartHealth);
 
+        UIController.UpdateLevelText(gameData.Level);
+
         levelController.Init(gameData.Level, player);
         inputController.Init();
         fightController.Init(player);

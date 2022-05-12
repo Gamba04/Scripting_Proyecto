@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField]
-    private int playerStartHealth = 10;
+    private int playerStartHealth = 20;
     [SerializeField]
     private float winDelay = 1;
 
@@ -183,12 +183,19 @@ public class GameManager : MonoBehaviour
     {
         print("Player died");
 
+        accumulatedHealth = playerStartHealth;
+
         Restart();
     }
 
     private void Restart() => UIController.SetFade(true, false, ReloadScene);
 
     private void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    private void OnApplicationQuit()
+    {
+        gameData.ResetLevel();
+    }
 
     #endregion
 

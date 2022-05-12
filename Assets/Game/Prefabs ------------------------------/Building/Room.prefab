@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 3}
   enemyParent: {fileID: 6364727347416345355}
   enemiesPivot: {x: 2, y: 0.2}
-  enemiesSeparation: 1
+  enemiesSeparation: 1.25
   playerPivot: {x: -2, y: 0.2}
 --- !u!50 &1148637120064964133
 Rigidbody2D:

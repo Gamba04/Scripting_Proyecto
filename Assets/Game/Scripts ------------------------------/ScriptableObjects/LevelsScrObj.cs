@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,14 +11,23 @@ public class LevelInfo
 
     public List<RoomInfo> rooms;
 
-    public void SetName(int index)
+    public void SetName(int index, int totalHealth)
     {
         for (int i = 0; i < rooms.Count; i++)
         {
             rooms[i].SetName(i);
         }
 
-        name = $"Level {index + 1}";
+        name = $"Level {index + 1} (+{totalHealth})";
+    }
+
+    public int GetTotalHealth()
+    {
+        int health = 0;
+
+        foreach (RoomInfo room in rooms) health += room.GetTotalHealth();
+
+        return health;
     }
 }
 
@@ -38,6 +46,15 @@ public class RoomInfo
         }
 
         name = $"Room {index + 1} {new string('-', 200)}";
+    }
+
+    public int GetTotalHealth()
+    {
+        int health = 0;
+
+        foreach (EnemyInfo enemy in enemies) health += enemy.health;
+
+        return health;
     }
 }
 
@@ -81,9 +98,13 @@ public class LevelsScrObj : ScriptableObject
 
     private void OnValidate()
     {
+        int totalHealth = 0;
+
         for (int i = 0; i < levels.Count; i++)
         {
-            levels[i].SetName(i);
+            levels[i].SetName(i, totalHealth);
+
+            totalHealth += levels[i].GetTotalHealth();
         }
     }
 
